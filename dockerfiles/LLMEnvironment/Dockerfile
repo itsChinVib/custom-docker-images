@@ -43,16 +43,19 @@ RUN git lfs install
 ENV MODEL_DIR /app/models
 RUN mkdir -p $MODEL_DIR
 
-COPY ./scripts /app/scripts
+RUN mkdir -p /app/scripts
 RUN chmod -R +x /app/scripts
 
 WORKDIR $MODEL_DIR
 
 # WhereIsAI/UAE-Large-V1 embedding model
+COPY ./scripts/download-uae-large-v1.sh /app/scripts/download-uae-large-v1.sh
+RUN chmod -R +x /app/scripts
 RUN /app/scripts/download-uae-large-v1.sh
 
 # Mistral Instruct
+COPY ./scripts/download-mistral-7b-instruct-0.1.sh /app/scripts/download-mistral-7b-instruct-0.1.sh
+RUN chmod -R +x /app/scripts
 RUN /app/scripts/download-mistral-7b-instruct-0.1.sh
 
 WORKDIR /app
-CMD ["bash"]
