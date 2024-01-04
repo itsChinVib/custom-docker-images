@@ -1,0 +1,19 @@
+version: '3'
+services:
+
+  chat-service:
+    image: llm-ubuntu-llamacpppython-pgvector
+    container_name: llm-ubuntu-llamacpppython-pgvector
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        MODEL_DIR: "${MODEL_DIR}"
+
+    environment:
+      MODEL_DIR: "${MODEL_DIR}"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]

@@ -1,0 +1,1 @@
+git clone https://huggingface.co/WhereIsAI/UAE-Large-V1 $MODEL_DIR/WhereIsAI_UAE-Large-V1
